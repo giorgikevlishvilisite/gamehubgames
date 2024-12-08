@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeBron James Stats</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background-color: #552582; /* LeBron's Lakers Purple */
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.5em;
+    }
+    nav {
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.2em;
+    }
+    nav a:hover {
+      color: #fdb927; /* Lakers Gold */
+    }
+    .hero {
+      background: #fdb927; /* Lakers Gold */
+      color: #552582; /* LeBron's Lakers Purple */
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .hero h2 {
+      font-size: 2.5em;
+    }
+    .section {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .section h2 {
+      color: #fdb927;
+      margin-bottom: 10px;
+    }
+    .gallery img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      margin: 10px;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: #552582; /* LeBron's Lakers Purple */
+      color: #fdb927; /* Lakers Gold */
+      margin-top: 20px;
+    }
+    .social-links a {
+      color: #552582; /* LeBron's Lakers Purple */
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 1.5em;
+    }
+    .social-links a:hover {
+      color: #fdb927; /* Lakers Gold */
+    }
+    .game-container {
+      background: #552582; /* LeBron's Lakers Purple */
+      color: #fdb927; /* Lakers Gold */
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 20px auto;
+      max-width: 500px;
+    }
+    .game-container input {
+      padding: 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    .game-container button {
+      padding: 10px;
+      font-size: 1em;
+      background: #fdb927; /* Lakers Gold */
+      color: #552582; /* LeBron's Lakers Purple */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .game-container button:hover {
+      background: #1d4f78;
+      color: #fdb927;
+    }
+    .game-message {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+
+    /* Cube Styles */
+    .cube-container {
+      perspective: 800px;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .cube {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateCube 5s infinite linear;
+    }
+
+    .face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .front  { transform: translateZ(100px); }
+    .back   { transform: rotateY(180deg) translateZ(100px); }
+    .left   { transform: rotateY(-90deg) translateZ(100px); }
+    .right  { transform: rotateY(90deg) translateZ(100px); }
+    .top    { transform: rotateX(90deg) translateZ(100px); }
+    .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+    @keyframes rotateCube {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>LeBron James</h1>
+    <p>The Official Fan Page of the King of Basketball</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#game">Mini-Game</a>
+    <a href="#stats">Stats</a>
+    <a href="#cube">Cube</a>
+    <a href="#social">Follow</a>
+  </nav>
+
+  <section class="hero">
+    <h2>The King. The Legend. The Champion.</h2>
+    <p>Discover the incredible journey of LeBron James, a player who redefined greatness.</p>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About LeBron James</h2>
+    <p>LeBron James, born December 30, 1984, is a professional basketball player for the Los Angeles Lakers. Widely regarded as one of the greatest basketball players of all time, LeBron has earned numerous NBA championships, MVP awards, and broken countless records.</p>
+    <p>LeBron's legacy goes beyond his basketball career. A philanthropist, businessman, and activist, his influence extends far off the court. He is known for his leadership on and off the court, and his ability to make teammates better.</p>
+  </section>
+
+  <section class="section" id="achievements">
+    <h2>Achievements</h2>
+    <ul>
+      <li>4× NBA Champion (2012, 2013, 2016, 2020)</li>
+      <li>4× NBA MVP (2009, 2010, 2012, 2013)</li>
+      <li>NBA Finals MVP (2012, 2013, 2016)</li>
+      <li>NBA All-Time Leading Scorer (2023)</li>
+      <li>18× NBA All-Star</li>
+      <li>2× Olympic Gold Medalist</li>
+    </ul>
+  </section>
+
+  <section class="section" id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png" alt="LeBron James">
+    </div>
+    <p style="text-align: center;">LeBron James in action during a game.</p>
+  </section>
+
+  <section class="section" id="game">
+    <h2>Mini-Game: Guess the Record</h2>
+    <div class="game-container">
+      <p>How many points did LeBron James score in his career-high game? (Hint: It's over 50)</p>
+      <input type="number" id="guess" placeholder="Enter your guess">
+      <button onclick="checkGuess()">Submit</button>
+      <p class="game-message" id="message"></p>
+    </div>
+  </section>
+
+  <section class="section" id="stats">
+    <h2>LeBron James Career Stats</h2>
+    <canvas id="statsChart" width="400" height="200"></canvas>
+    <script>
+      const ctx = document.getElementById('statsChart').getContext('2d');
+      const statsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['2015', '2016', '2017', '2018', '2019', '2020'],
+          datasets: [{
+            label: 'Points per Game',
+            data: [25.3, 25.5, 27.5, 27.6, 25.8, 25.0],
+            borderColor: 'rgb(255, 99, 132)',
+            fill: false,
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+  </section>
+
+  <section class="section" id="cube">
+    <h2>LeBron James's Career Achievements</h2>
+    <div class="cube-container">
+      <div class="cube">
+        <div class="face front">MVP</div>
+        <div class="face back">4x Champion</div>
+        <div class="face left">All-Star</div>
+        <div class="face right">NBA's All-Time Scorer</div>
+        <div class="face top">Philanthropist</div>
+        <div class="face bottom">Los Angeles Lakers</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="social">
+    <p>Follow LeBron James on Social Media</p>
+    <div class="social-links">
+      <a href="https://twitter.com/KingJames" target="_blank">Twitter</a>
+      <a href="https://www.instagram.com/kingjames/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/LeBron" target="_blank">Facebook</a>
+    </div>
+  </footer>
+
+  <script>
+    function checkGuess() {
+      const guess = document.getElementById('guess').value;
+      const message = document.getElementById('message');
+      const correctAnswer = 61; // LeBron's career-high game score
+      
+      if (guess == correctAnswer) {
+        message.textContent = 'Congratulations! You guessed correctly!';
+        message.style.color = 'green';
+      } else {
+        message.textContent = 'Oops! Try again.';
+        message.style.color = 'red';
+      }
+    }
+  </script>
+
+</body>
+</html>

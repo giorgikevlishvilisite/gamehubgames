@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stephen Curry Stats</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background-color: #1d428a;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.5em;
+    }
+    nav {
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.2em;
+    }
+    nav a:hover {
+      color: #ffc72c;
+    }
+    .hero {
+      background: #ffc72c;
+      color: #1d428a;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .hero h2 {
+      font-size: 2.5em;
+    }
+    .section {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .section h2 {
+      color: #ffc72c;
+      margin-bottom: 10px;
+    }
+    .gallery img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      margin: 10px;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: #1d428a;
+      color: #ffc72c;
+      margin-top: 20px;
+    }
+    .social-links a {
+      color: #1d428a;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 1.5em;
+    }
+    .social-links a:hover {
+      color: #ffc72c;
+    }
+    .game-container {
+      background: #1d428a;
+      color: #ffc72c;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 20px auto;
+      max-width: 500px;
+    }
+    .game-container input {
+      padding: 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    .game-container button {
+      padding: 10px;
+      font-size: 1em;
+      background: #ffc72c;
+      color: #1d428a;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .game-container button:hover {
+      background: #1a374d;
+      color: #ffc72c;
+    }
+    .game-message {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+
+    /* Cube Styles */
+    .cube-container {
+      perspective: 800px;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .cube {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateCube 5s infinite linear;
+    }
+
+    .face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .front  { transform: translateZ(100px); }
+    .back   { transform: rotateY(180deg) translateZ(100px); }
+    .left   { transform: rotateY(-90deg) translateZ(100px); }
+    .right  { transform: rotateY(90deg) translateZ(100px); }
+    .top    { transform: rotateX(90deg) translateZ(100px); }
+    .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+    @keyframes rotateCube {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Stephen Curry</h1>
+    <p>The Official Fan Page of the Greatest Shooter in NBA History</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#game">Mini-Game</a>
+    <a href="#stats">Stats</a>
+    <a href="#cube">Cube</a>
+    <a href="#social">Follow</a>
+  </nav>
+
+  <section class="hero">
+    <h2>Game Changer. Record Breaker. Champion.</h2>
+    <p>Discover the incredible journey of Stephen Curry, a player who transformed basketball.</p>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About Stephen Curry</h2>
+    <p>Stephen Curry, born March 14, 1988, is a professional basketball player for the Golden State Warriors. Known for his exceptional shooting abilities, he is regarded as the greatest shooter in NBA history. Curry changed the game by popularizing the three-point shot and leading the Warriors to numerous championships.</p>
+    <p>Curry's rise to stardom was not typical. Despite being overlooked by major colleges due to his size, he shined in college basketball at Davidson. His success led to him being selected as the 7th overall pick in the 2009 NBA Draft. Over the years, Curry has earned multiple NBA championships, MVP awards, and set numerous records.</p>
+  </section>
+
+  <section class="section" id="achievements">
+    <h2>Achievements</h2>
+    <ul>
+      <li>4× NBA Champion (2015, 2017, 2018, 2022)</li>
+      <li>2× NBA MVP (2015, 2016 - Unanimous)</li>
+      <li>NBA Finals MVP (2022)</li>
+      <li>NBA All-Time Leader in Three-Point Shots Made</li>
+      <li>9× NBA All-Star</li>
+      <li>NBA Scoring Champion (2016, 2021)</li>
+      <li>2× Olympic Gold Medalist with Team USA</li>
+    </ul>
+  </section>
+
+  <section class="section" id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png" alt="Stephen Curry">
+    </div>
+    <p style="text-align: center;">Stephen Curry in action during a game.</p>
+  </section>
+
+  <section class="section" id="game">
+    <h2>Mini-Game: Guess the Record</h2>
+    <div class="game-container">
+      <p>How many three-pointers did Curry make in his best season? (Hint: It's between 300 and 500)</p>
+      <input type="number" id="guess" placeholder="Enter your guess">
+      <button onclick="checkGuess()">Submit</button>
+      <p class="game-message" id="message"></p>
+    </div>
+  </section>
+
+  <section class="section" id="stats">
+    <h2>Stephen Curry Career Stats</h2>
+    <canvas id="statsChart" width="400" height="200"></canvas>
+    <script>
+      const ctx = document.getElementById('statsChart').getContext('2d');
+      const statsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['2015', '2016', '2017', '2018', '2019', '2020'],
+          datasets: [{
+            label: 'Points per Game',
+            data: [23.8, 30.1, 25.3, 26.8, 24.1, 28.4],
+            borderColor: 'rgb(75, 192, 192)',
+            fill: false,
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+  </section>
+
+  <section class="section" id="cube">
+    <h2>Stephen Curry's 2015-2016 Season Achievements</h2>
+    <div class="cube-container">
+      <div class="cube">
+        <div class="face front">2015-2016</div>
+        <div class="face back">MVP</div>
+        <div class="face left">3-Point Leader</div>
+        <div class="face right">4x Champion</div>
+        <div class="face top">All-Star</div>
+        <div class="face bottom">Golden State</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="social">
+    <p>Follow Stephen Curry on Social Media</p>
+    <div class="social-links">
+      <a href="https://twitter.com/StephenCurry30" target="_blank">Twitter</a>
+      <a href="https://www.instagram.com/stephencurry30/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/StephenCurry" target="_blank">Facebook</a>
+    </div>
+  </footer>
+
+  <script>
+    function checkGuess() {
+      const guess = document.getElementById('guess').value;
+      const message = document.getElementById('message');
+      const correctAnswer = 402; // Curry's record for 3-pointers in a season (2015-2016)
+      
+      if (guess == correctAnswer) {
+        message.textContent = 'Congratulations! You guessed correctly!';
+        message.style.color = 'green';
+      } else {
+        message.textContent = 'Oops! Try again.';
+        message.style.color = 'red';
+      }
+    }
+  </script>
+
+</body>
+</html>
