@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Evolution Cards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Header and Search Bar */
+        header {
+            margin: 20px;
+            text-align: center;
+        }
+
+        #search-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #searchBar {
+            padding: 12px;
+            width: 250px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        /* Card container and layout */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            margin: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .card {
+            width: 300px;
+            height: 420px;
+            perspective: 1500px;
+            cursor: pointer;
+            margin: 10px;
+            transition: box-shadow 0.2s ease-in-out;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.2s;
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-front {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-back {
+            background-color: #333;
+            color: white;
+            transform: rotateY(180deg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .card-front img {
+            width: 80%;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .evolution-info {
+            font-size: 16px;
+            color: #ffcc00;
+            margin-top: 10px;
+        }
+
+        .type-icon {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .fire .card-front {
+            background-color: #ff6600;
+        }
+
+        .water .card-front {
+            background-color: #3399ff;
+        }
+
+        .electric .card-front {
+            background-color: #ffcc00;
+        }
+
+        .normal .card-front {
+            background-color: #cccccc;
+        }
+
+        /* Evolution Button */
+        .evolution-button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .evolution-button:hover {
+            background-color: #ff3300;
+        }
+
+        /* Hover and Click Effects */
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Animations for Evolution */
+        .evolving .card-front img {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .evolving .card-back {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            #searchBar {
+                width: 200px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Pokémon Evolution Cards</h1>
+    <div id="search-container">
+        <input type="text" id="searchBar" placeholder="Search Pokémon by name, number, or type..." onkeyup="searchPokemon()">
+    </div>
+</header>
+
+<div class="cards-container">
+    <!-- Example Pokémon Cards -->
+    <!-- Bulbasaur Card -->
+    <div class="card normal" data-name="Bulbasaur" data-type="normal" data-number="1" data-evolution="Ivysaur (Level 16)">
+        <div class="card-inner">
+            <div class="card-front">
+                <div>
+                    <i class="fas fa-leaf type-icon"></i> <p>Bulbasaur</p>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Grass/Poison Type</p>
+                <p>Level 5</p>
+                <p>Vine Whip</p>
+                <p>Leech Seed</p>
+                <p class="evolution-info">Evolves to Ivysaur at Level 16</p>
+                <button class="evolution-button" onclick="evolvePokemon(this)">Evolve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pikachu Card -->
+    <div class="card electric" data-name="Pikachu" data-type="electric" data-number="25" data-evolution="Raichu (Thunder Stone)">
+        <div class="card-inner">
+            <div class="card-front">
+                <div>
+                    <i class="fas fa-bolt type-icon"></i> <p>Pikachu</p>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="Pikachu">
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Electric Type</p>
+                <p>Level 5</p>
+                <p>Thunderbolt</p>
+                <p>Quick Attack</p>
+                <p class="evolution-info">Evolves to Raichu with a Thunder Stone</p>
+                <button class="evolution-button" onclick="evolvePokemon(this)">Evolve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charmander Card -->
+    <div class="card fire" data-name="Charmander" data-type="fire" data-number="4" data-evolution="Charmeleon (Level 16)">
+        <div class="card-inner">
+            <div class="card-front">
+                <div>
+                    <i class="fas fa-fire type-icon"></i> <p>Charmander</p>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png" alt="Charmander">
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Fire Type</p>
+                <p>Level 5</p>
+                <p>Ember</p>
+                <p>Scratch</p>
+                <p class="evolution-info">Evolves to Charmeleon at Level 16</p>
+                <button class="evolution-button" onclick="evolvePokemon(this)">Evolve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Squirtle Card -->
+    <div class="card water" data-name="Squirtle" data-type="water" data-number="7" data-evolution="Wartortle (Level 16)">
+        <div class="card-inner">
+            <div class="card-front">
+                <div>
+                    <i class="fas fa-water type-icon"></i> <p>Squirtle</p>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png" alt="Squirtle">
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Water Type</p>
+                <p>Level 5</p>
+                <p>Water Gun</p>
+                <p>Tackle</p>
+                <p class="evolution-info">Evolves to Wartortle at Level 16</p>
+                <button class="evolution-button" onclick="evolvePokemon(this)">Evolve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add more cards with the same format (Bulbasaur, Pikachu, etc.) -->
+    <!-- Here are some additional cards: -->
+
+    <!-- Eevee Card -->
+    <div class="card normal" data-name="Eevee" data-type="normal" data-number="133" data-evolution="Vaporeon (Water Stone)">
+        <div class="card-inner">
+            <div class="card-front">
+                <div>
+                    <i class="fas fa-paw type-icon"></i> <p>Eevee</p>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png" alt="Eevee">
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Normal Type</p>
+                <p>Level 5</p>
+                <p>Quick Attack</p>
+                <p>Helping Hand</p>
+                <p class="evolution-info">Evolves to Vaporeon with a Water Stone</p>
+                <button class="evolution-button" onclick="evolvePokemon(this)">Evolve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jigglypuff Card -->
+    <div class="card normal" data-name="Jigglypuff" data-type="normal" data-number="39" data-evolution="Wigglytuff (Moon Stone)">
+        <div class="card-inner">
+            <div class="card-front">
+                <div>
+                    <i class="fas fa-paw type-icon"></i> <p>Jigglypuff</p>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png" alt="Jigglypuff">
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Normal/Fairy Type</p>
+                <p>Level 5</p>
+                <p>Sing</p>
+                <p>Rollout</p>
+                <p class="evolution-info">Evolves to Wigglytuff with a Moon Stone</p>
+                <button class="evolution-button" onclick="evolvePokemon(this)">Evolve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meowth Card -->
+    <div class="card normal" data-name="Meowth" data-type="normal" data-number="52" data-evolution="Persian (Level 28)">
+        <div class="card-inner">
+            <div class="card-front">
+                <div>
+                    <i class="fas fa-paw type-icon"></i> <p>Meowth</p>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/52.png" alt="Meowth">
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Normal Type</p>
+                <p>Level 5</p>
+                <p>Scratch</p>
+                <p>Pay Day</p>
+                <p class="evolution-info">Evolves to Persian at Level 28</p>
+                <button class="evolution-button" onclick="evolvePokemon(this)">Evolve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add the rest of your Pokémon Cards in similar structure -->
+    <!-- Total 30 cards can be added here, continuing the pattern -->
+
+</div>
+
+<script>
+    function searchPokemon() {
+        const searchValue = document.getElementById('searchBar').value.toLowerCase();
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            const name = card.getAttribute('data-name').toLowerCase();
+            const type = card.getAttribute('data-type').toLowerCase();
+            const number = card.getAttribute('data-number');
+
+            // Check if search value matches name, type, or number
+            if (name.includes(searchValue) || type.includes(searchValue) || number.includes(searchValue)) {
+                card.style.display = 'block'; // Show card if it matches search
+            } else {
+                card.style.display = 'none'; // Hide card if it doesn't match
+            }
+        });
+    }
+
+    function evolvePokemon(button) {
+        const card = button.closest('.card');
+        const cardInner = card.querySelector('.card-inner');
+        const frontImage = card.querySelector('.card-front img');
+        const back = card.querySelector('.card-back');
+        
+        // Add animation class
+        cardInner.classList.add('evolving');
+        
+        // After animation, update the front image and back content
+        setTimeout(() => {
+            const evolutionData = card.getAttribute('data-evolution');
+            // Update to evolved Pokémon image
+            const newImageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png'; // Example evolution
+            frontImage.src = newImageUrl;
+            back.querySelector('.evolution-info').innerText = `Evolves to Venusaur at Level 32`;
+        }, 500); // Evolution animation time
+    }
+</script>
+
+</body>
+
+</html>
